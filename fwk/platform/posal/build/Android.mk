@@ -75,7 +75,7 @@ LOCAL_SHARED_LIBRARIES := \
     liblx-osal \
     libdiag
 
-LOCAL_HEADER_LIBRARIES := libarosal_headers libspf_interfaces_headers libspf_api libspf_utils_headers libprivate_api_headers libplatform_cfg_headers
+LOCAL_HEADER_LIBRARIES := libarosal_headers libspf_interfaces_headers libspf_api libspf_utils_headers libprivate_api_headers libplatform_cfg_headers libdiag_headers
 LOCAL_STATIC_LIBRARIES :=
 
 include $(BUILD_STATIC_LIBRARY)
