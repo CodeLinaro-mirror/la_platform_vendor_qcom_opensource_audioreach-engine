@@ -41,7 +41,9 @@ include_directories(
      ${PROJECT_SOURCE_DIR}/fwk/spf/utils/interleaver/inc
      ${PROJECT_SOURCE_DIR}/fwk/spf/utils/lpi_pool/inc
      ${PROJECT_SOURCE_DIR}/fwk/spf/interfaces/fwk/api
+     ${PROJECT_SOURCE_DIR}/fwk/spf/interfaces/module/offload/api
      ${PROJECT_SOURCE_DIR}/fwk/spf/containers/cmn/graph_utils/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/containers/cmn/topologies/topo_utils/inc
 )
 
 add_library(pcm_cnv ${pcm_cnv_sources})

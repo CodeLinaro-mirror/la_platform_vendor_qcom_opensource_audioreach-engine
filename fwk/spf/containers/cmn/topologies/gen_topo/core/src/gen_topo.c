@@ -7,7 +7,7 @@
  *
  *
  * \copyright
- *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
+ *  Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -16,6 +16,7 @@
 #include "gen_topo_buf_mgr.h"
 #include "gen_topo_prof.h"
 #include "gen_topo_ctrl_port.h"
+#include "thin_topo_inline.h"
 
 // clang-format off
 static const topo_cu_vtable_t gen_topo_cu_vtable =
@@ -327,7 +328,8 @@ static ar_result_t gen_topo_create_virtual_stub(gen_topo_t *           topo_ptr,
 
    TRY(result, gen_topo_check_create_bypass_module(topo_ptr, module_ptr));
 
-   module_ptr->flags.inplace = TRUE;
+   module_ptr->flags.inplace         = TRUE;
+   module_ptr->flags.dynamic_inplace = TRUE;
 
    // stack size for bypass is not high: graph_init_ptr->max_stack_size = MAX(graph_init_ptr->max_stack_size, 0);
    // port_has_threshold, requires_data_buffering -> default value of 0 works.
@@ -463,6 +465,8 @@ ar_result_t gen_topo_init_set_get_data_port_properties(gen_topo_module_t *    mo
                // have both input and output data, which results in corruption. To avoid this complication we don't
                // support inplace for port with thresholds. <Same logic applies to the output port context as well.>
                module_ptr->flags.inplace            = FALSE;
+               module_ptr->flags.dynamic_inplace    = FALSE;
+
                in_port_ptr->common.threshold_raised = threshold_bytes;
             }
             else
@@ -549,6 +553,7 @@ ar_result_t gen_topo_init_set_get_data_port_properties(gen_topo_module_t *    mo
                // <Refer input port context comment to understand the reason to make it non-inplace.>
 
                module_ptr->flags.inplace             = FALSE;
+               module_ptr->flags.dynamic_inplace     = FALSE;
                out_port_ptr->common.threshold_raised = threshold_bytes;
             }
             else
@@ -975,6 +980,9 @@ ar_result_t gen_topo_destroy_topo(gen_topo_t *topo_ptr)
 
    // free the started sorted module list if not done yet
    spf_list_delete_list((spf_list_node_t **)&topo_ptr->started_sorted_module_list_ptr, TRUE);
+
+   thin_topo_destroy(topo_ptr);
+
    return AR_EOK;
 }
 
@@ -1308,6 +1316,12 @@ static ar_result_t gen_topo_prop_med_fmt_from_prev_out_to_next_in(gen_topo_t *  
    {
       // If media format is updated then update port threshold as well.
       capi_event_flag_ptr->port_thresh = TRUE;
+
+      if (in_port_ptr->common.media_fmt_ptr &&
+          (SPF_DEINTERLEAVED_RAW_COMPRESSED == in_port_ptr->common.media_fmt_ptr->data_format))
+      {
+         THIN_TOPO_SET_EXIT_FLAG(topo_ptr, has_unsupported_mf, TRUE);
+      }
 
       // Even if module is being bypassed, we need to set media fmt as setting media fmt may enable module.
       if (module_ptr->capi_ptr)
