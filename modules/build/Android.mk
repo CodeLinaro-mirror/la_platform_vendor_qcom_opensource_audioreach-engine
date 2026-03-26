@@ -7,3 +7,4 @@ include $(MY_LOCAL_PATH_MODULES)/processing/filters/fir/build/Android.mk
 include $(MY_LOCAL_PATH_MODULES)/processing/filters/multi_stage_iir/build/Android.mk
 include $(MY_LOCAL_PATH_MODULES)/processing/gain_control/limiter/build/Android.mk
 include $(MY_LOCAL_PATH_MODULES)/cmn/simple_accumulator_limiter/build/Android.mk
+include $(MY_LOCAL_PATH_MODULES)/cmn/pcm_mf_cnv/build/Android.mk

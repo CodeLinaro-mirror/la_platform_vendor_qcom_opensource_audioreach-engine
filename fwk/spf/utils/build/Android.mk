@@ -69,7 +69,9 @@ LOCAL_SHARED_LIBRARIES := \
     liblx-osal \
     libar-gpr \
     libdiag \
-    libtinyalsa
+    libtinyalsa \
+    libdynamic_resampler \
+    libiir_resampler
 
 LOCAL_HEADER_LIBRARIES := libposal_headers libspf_api libspf_interfaces_headers libapm_headers libamdb_headers libirm_headers libdls_headers
 LOCAL_STATIC_LIBRARIES := \
