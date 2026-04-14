@@ -10,7 +10,9 @@ PCM_MF_CNV_C_INCLUDES := \
     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/api \
     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/inc \
     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/api \
-    ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/inc
+    ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/inc \
+    ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/dynamic_resampler/inc \
+    ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/iir_resampler/inc
 
 PCM_MF_CNV_EXPORT_C_INCLUDE_DIRS := \
     $(LOCAL_PATH)/capi/pcm_cnv/api \
