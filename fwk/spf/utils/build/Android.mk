@@ -69,7 +69,7 @@ LOCAL_SHARED_LIBRARIES := \
     liblx-osal \
     libar-gpr \
     libdiag \
-    libtinyalsa \
+    liboss_tinyalsa \
     libdynamic_resampler \
     libiir_resampler
 
