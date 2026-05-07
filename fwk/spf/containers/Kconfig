@@ -12,4 +12,8 @@ config PLACEHOLDER_ENC_DEC
         tristate "Enable PLACEHOLDER Library"
         default n
 
+config CONFIG_APM_THIN_TOPO
+        bool "Enable THIN TOPO Library"
+        default n
+
 endmenu
