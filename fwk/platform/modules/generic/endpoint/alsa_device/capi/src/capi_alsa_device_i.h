@@ -16,6 +16,8 @@
 #include "alsa_device_api.h"
 #include "capi_cmn.h"
 #include "alsa_device_driver.h"
+#include "posal_nmutex.h"
+#include "posal_condvar.h"
 
 /*=====================================================================
   Macros
@@ -32,6 +34,8 @@
 Note: this module is not defined as Signal Triggered Module */
 #define ALSA_DEVICE_NUM_FRAMEWORK_EXTENSIONS_SOURCE 1
 #define ALSA_DEVICE_NUM_FRAMEWORK_EXTENSIONS_SINK 0
+
+#define ALSA_DEVICE_DMA_THREAD_STACK_SIZE 8192
 
 /* Number of milliseconds in a second*/
 #define NUM_MS_PER_SEC 1000
@@ -114,6 +118,10 @@ typedef struct capi_alsa_device
    int8_t *read_buffer;               // Buffer to hold one period of captured data
    uint32_t read_buffer_size;         // Size of read buffer in bytes
    bool_t data_ready;                 // Flag: data available in read buffer
+
+   /* Synchronization between DMA thread and process_source */
+   posal_nmutex_t  buf_lock;          // Protects read_buffer and data_ready
+   posal_condvar_t buf_consumed_cond; // Signaled by process_source when data_ready cleared
 } capi_alsa_device_t;
 
 /*------------------------------------------------------------------------
