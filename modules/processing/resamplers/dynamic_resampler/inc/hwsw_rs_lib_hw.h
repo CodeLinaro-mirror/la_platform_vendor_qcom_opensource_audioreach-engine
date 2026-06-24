@@ -21,6 +21,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear
 #include "hwd_devcfg.h"
 #endif
 #include "hw_rs_lib.h"
+#include "rs_driver_ext.h"
 
 
 /*------------------------------------------------------------------------
@@ -154,10 +155,10 @@ typedef struct hwsw_rs_hw_resampler
    hw_resampler_mutex_t *mutex_info;
 
    // Hw resampler handle.
-   //rs_drv_handle_t rs_handle;
+   rs_drv_handle_t rs_handle;
 
    // Hw resampler job config structure.
-   //rs_drv_job_cfg_t rs_job_cfg;
+   rs_drv_job_cfg_t rs_job_cfg;
 
    // heap id, to allocate the memory for buffers.
    uint32_t heap_id;
