@@ -180,7 +180,7 @@ static inline bool_t spl_topo_op_port_has_pending_media_fmt(spl_topo_t *topo_ptr
  */
 static inline bool_t spl_topo_media_format_not_received_on_port(spl_topo_t *topo_ptr, gen_topo_common_port_t *port_cmn_ptr)
 {
-   return !port_cmn_ptr->flags.is_mf_valid;
+   return !port_cmn_ptr->flags.is_mf_valid || (NULL == port_cmn_ptr->media_fmt_ptr);
 }
 
 /**
