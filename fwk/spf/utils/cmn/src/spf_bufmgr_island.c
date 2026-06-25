@@ -52,12 +52,18 @@ bool_t spf_is_bufmgr_node(void *buf_ptr)
       void *end_addr                = (void *)((uint8_t *)start_addr + bufmgr_ptr->size);
       void *addr                    = (void *)buf_ptr;
 
-      spf_bufmgr_metadata_t *pMetadata       = (spf_bufmgr_metadata_t *) ((uint8_t *)(buf_ptr) - POSAL_BUFMGR_METADATA_SIZE);
-      posal_queue_t *return_q_ptr   = (posal_queue_t *)pMetadata->word0;
-
       /* A buffer is a bufmgr node if the buffer address falls within the
        * bufmgr range or if the return queue address == &g_heap_alloc_indicator */
-      if ((((uint64_t)addr >= (uint64_t)start_addr) && ((uint64_t)addr < (uint64_t)end_addr)) || ((uint64_t *)return_q_ptr == (uint64 *)&g_heap_alloc_indicator))
+      if (((uint64_t)addr >= (uint64_t)start_addr) && ((uint64_t)addr < (uint64_t)end_addr))
+      {
+         return TRUE;
+      }
+
+      /* For out-of-range buffers, read return_q_ptr from offset 0 (spf_msg_header_t::return_q_ptr).
+       * This is always valid for any spf_msg. Reading buf_ptr-POSAL_BUFMGR_METADATA_SIZE is only
+       * valid for pool buffers that carry a metadata prefix — a wild read for plain malloc buffers. */
+      posal_queue_t *return_q_ptr   = *(posal_queue_t **)buf_ptr;
+      if ((uint64_t *)return_q_ptr == (uint64 *)&g_heap_alloc_indicator)
       {
          return TRUE;
       }
