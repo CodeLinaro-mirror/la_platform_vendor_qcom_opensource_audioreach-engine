@@ -110,14 +110,14 @@ else
           ext/thin_topo/stub_src/thin_topo.c
 endif
 
-LOCAL_CFLAGS += -flto -O3 -Wall -ffixed-x18 -std=c17
+LOCAL_CFLAGS += -flto -O3 -Wall -std=c17
 
 ifeq ($(CONFIG_APM_THIN_TOPO),y)
     LOCAL_CFLAGS += -DUSES_THIN_TOPO
 endif
 
 LOCAL_CFLAGS_32 += -mfpu=neon -fasm -ftree-vectorize -O3
-LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto -ffixed-x18
 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_CFLAGS += -fsanitize=shadow-call-stack
