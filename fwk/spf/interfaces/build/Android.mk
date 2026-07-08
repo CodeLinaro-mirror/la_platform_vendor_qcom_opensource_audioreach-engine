@@ -50,10 +50,10 @@ LOCAL_SRC_FILES := \
     module/capi_libraries/capi_library_internal_buffer/src/capi_library_internal_buffer.c \
     module/capi_libraries/capi_library_thread_pool/src/capi_library_thread_pool.c
 
-LOCAL_CFLAGS += -flto -O3 -Wall -ffixed-x18 -std=c17
+LOCAL_CFLAGS += -flto -O3 -Wall -std=c17
 
 LOCAL_CFLAGS_32 += -mfpu=neon -fasm -ftree-vectorize -O3
-LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto -ffixed-x18
 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_CFLAGS += -fsanitize=shadow-call-stack

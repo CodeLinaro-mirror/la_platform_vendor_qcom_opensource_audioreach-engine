@@ -59,11 +59,11 @@ LOCAL_SRC_FILES := \
     thread_pool/src/spf_thread_pool_island.c \
     watchdog_svc/src/spf_watchdog_svc.c
 
-LOCAL_CFLAGS    += -O3 -Wall -ffixed-x18 -g
+LOCAL_CFLAGS    += -O3 -Wall -g
 LOCAL_CFLAGS    += -DSPF_WATCHDOG_SVC_PERIOD_US=100000 -DUSES_SPF_THREAD_POOL
 
 LOCAL_CFLAGS_32 += -mfpu=neon
-LOCAL_CFLAGS_64 += -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -march=armv8-a+crypto -ffixed-x18
 
 LOCAL_SHARED_LIBRARIES := \
     liblx-osal \

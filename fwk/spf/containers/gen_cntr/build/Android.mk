@@ -111,14 +111,14 @@ else
           ext/thin_topo_cntr_utils/stub_src/thin_topo_cntr_utils.c
 endif
 
-LOCAL_CFLAGS += -flto -O3 -Wall -ffixed-x18 -std=c17
+LOCAL_CFLAGS += -flto -O3 -Wall -std=c17
 
 ifeq ($(CONFIG_APM_THIN_TOPO),y)
     LOCAL_CFLAGS += -DUSES_THIN_TOPO
 endif
 
 LOCAL_CFLAGS_32 += -mfpu=neon -fasm -ftree-vectorize -O3
-LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto -ffixed-x18
 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_CFLAGS += -fsanitize=shadow-call-stack
@@ -145,14 +145,14 @@ LOCAL_C_INCLUDES := \
 LOCAL_SRC_FILES := \
     ext/wr_sh_mem_ep/src/gen_cntr_wr_sh_mem_ep.c
 
-LOCAL_CFLAGS += -flto -O3 -Wall -ffixed-x18 -std=c17
+LOCAL_CFLAGS += -flto -O3 -Wall -std=c17
 
 ifeq ($(CONFIG_APM_THIN_TOPO),y)
     LOCAL_CFLAGS += -DUSES_THIN_TOPO
 endif
 
 LOCAL_CFLAGS_32 += -mfpu=neon -fasm -ftree-vectorize -O3
-LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto -ffixed-x18
 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_CFLAGS += -fsanitize=shadow-call-stack
@@ -191,14 +191,14 @@ LOCAL_C_INCLUDES := \
 LOCAL_SRC_FILES := \
     ext/rd_sh_mem_ep/src/gen_cntr_rd_sh_mem_ep.c
 
-LOCAL_CFLAGS += -flto -O3 -Wall -ffixed-x18 -std=c17
+LOCAL_CFLAGS += -flto -O3 -Wall -std=c17
 
 ifeq ($(CONFIG_APM_THIN_TOPO),y)
     LOCAL_CFLAGS += -DUSES_THIN_TOPO
 endif
 
 LOCAL_CFLAGS_32 += -mfpu=neon -fasm -ftree-vectorize -O3
-LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto -ffixed-x18
 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_CFLAGS += -fsanitize=shadow-call-stack
@@ -236,14 +236,14 @@ LOCAL_C_INCLUDES := \
 LOCAL_SRC_FILES := \
     ext/placeholder/src/gen_cntr_placeholder.c
 
-LOCAL_CFLAGS += -flto -O3 -Wall -ffixed-x18 -std=c17
+LOCAL_CFLAGS += -flto -O3 -Wall -std=c17
 
 ifeq ($(CONFIG_APM_THIN_TOPO),y)
     LOCAL_CFLAGS += -DUSES_THIN_TOPO
 endif
 
 LOCAL_CFLAGS_32 += -mfpu=neon -fasm -ftree-vectorize -O3
-LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto -ffixed-x18
 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_CFLAGS += -fsanitize=shadow-call-stack
@@ -281,14 +281,14 @@ LOCAL_C_INCLUDES := \
 LOCAL_SRC_FILES := \
     ext/placeholder/src/gen_cntr_placeholder.c
 
-LOCAL_CFLAGS += -flto -O3 -Wall -ffixed-x18 -std=c17
+LOCAL_CFLAGS += -flto -O3 -Wall -std=c17
 
 ifeq ($(CONFIG_APM_THIN_TOPO),y)
     LOCAL_CFLAGS += -DUSES_THIN_TOPO
 endif
 
 LOCAL_CFLAGS_32 += -mfpu=neon -fasm -ftree-vectorize -O3
-LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto
+LOCAL_CFLAGS_64 += -fasm -ftree-vectorize -O3 -march=armv8-a+crypto -ffixed-x18
 
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_CFLAGS += -fsanitize=shadow-call-stack

@@ -16,10 +16,10 @@ ALSA_DEVICE_SRC_FILES := \
     capi/src/capi_alsa_device.c \
     lib/src/tinyalsa/alsa_device_driver.c
 
-ALSA_DEVICE_CFLAGS    += -O3 -Wall -ffixed-x18
+ALSA_DEVICE_CFLAGS    += -O3 -Wall
 
 ALSA_DEVICE_CFLAGS_32 += -mfpu=neon
-ALSA_DEVICE_CFLAGS_64 += -march=armv8-a+crypto
+ALSA_DEVICE_CFLAGS_64 += -march=armv8-a+crypto -ffixed-x18
 
 ALSA_DEVICE_SHARED_LIBS := \
     liblx-osal \
