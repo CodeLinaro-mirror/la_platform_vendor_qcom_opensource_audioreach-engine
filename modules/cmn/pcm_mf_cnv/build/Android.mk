@@ -32,10 +32,10 @@ PCM_MF_CNV_SRC_FILES := \
     lib/src/pc_process_island.cpp \
     lib/src/pc_float/pc_float.cpp
 
-PCM_MF_CNV_CFLAGS    += -O3 -Wall -ffixed-x18
+PCM_MF_CNV_CFLAGS    += -O3 -Wall
 
 PCM_MF_CNV_CFLAGS_32 += -mfpu=neon
-PCM_MF_CNV_CFLAGS_64 += -march=armv8-a+crypto
+PCM_MF_CNV_CFLAGS_64 += -march=armv8-a+crypto -ffixed-x18
 
 PCM_MF_CNV_SHARED_LIBS := \
     liblx-osal \
