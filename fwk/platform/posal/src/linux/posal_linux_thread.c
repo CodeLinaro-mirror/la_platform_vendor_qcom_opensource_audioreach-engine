@@ -303,7 +303,7 @@ ar_result_t posal_thread_launch3(posal_thread_t     *posal_obj_ptr,
 
 /* High prio debug message to help associate thread name with thread ID*/
 
-   AR_MSG(DBG_HIGH_PRIO, "THRD CREATE: Thread=0x%x Name = %s", thrd_obj_ptr->tid, threadname);
+   AR_MSG(DBG_HIGH_PRIO, "THRD CREATE: Thread=0x%llx Name = %s", (unsigned long long)thrd_obj_ptr->tid, threadname);
 
    goto done;
 
